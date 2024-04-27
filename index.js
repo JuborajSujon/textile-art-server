@@ -26,7 +26,17 @@ const client = new MongoClient(uri, {
 async function run() {
   try {
     const productCollection = client.db("artcraftDB").collection("products");
+    const productCategoryCollection = client
+      .db("artcraftDB")
+      .collection("products categories");
+    // get all products categories form the database
+    app.get("/categories", async (req, res) => {
+      const cursor = productCategoryCollection.find();
+      const categories = await cursor.toArray();
+      res.send(categories);
+    });
 
+    // add art and craft products
     app.post("/addProduct", async (req, res) => {
       const newProduct = req.body;
       const result = await productCollection.insertOne(newProduct);
