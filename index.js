@@ -12,7 +12,6 @@ app.use(cors());
 app.use(express.json());
 
 // mongodb
-
 const uri = `mongodb+srv://${process.env.MONGODB_USER}:${process.env.MONGODB_PASSWORD}@atlascluster.xgsegjb.mongodb.net/?retryWrites=true&w=majority&appName=AtlasCluster`;
 
 // Create a MongoClient with a MongoClientOptions object to set the Stable API version
@@ -26,12 +25,13 @@ const client = new MongoClient(uri, {
 
 async function run() {
   try {
-    const productCollection = client
-      .db("artcraftDB")
-      .collection("all products");
+    const productCollection = client.db("artcraftDB").collection("products");
 
-    // Send a ping to confirm a successful connection
-    // await client.db("admin").command({ ping: 1 });
+    app.post("/addProduct", async (req, res) => {
+      const newProduct = req.body;
+      const result = await productCollection.insertOne(newProduct);
+      res.send(result);
+    });
 
     console.log(
       "Pinged your deployment. You successfully connected to MongoDB!"
