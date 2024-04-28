@@ -51,6 +51,14 @@ async function run() {
       res.send(product);
     });
 
+    // get product data by userEmail
+    app.get("/userproducts/:email", async (req, res) => {
+      const email = req.params.email;
+      const query = { userEmail: email };
+      const products = await productCollection.find(query).toArray();
+      res.send(products);
+    });
+
     // add art and craft products
     app.post("/addProduct", async (req, res) => {
       const newProduct = req.body;
