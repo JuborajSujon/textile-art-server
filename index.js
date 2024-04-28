@@ -66,6 +66,35 @@ async function run() {
       res.send(result);
     });
 
+    // update art and craft products
+    app.put("/updateProduct/:id", async (req, res) => {
+      const id = req.params.id;
+      const filter = { _id: new ObjectId(id) };
+      const updateProduct = req.body;
+      const options = { upsert: true };
+      const updateDoc = {
+        $set: {
+          item_name: updateProduct.item_name,
+          image: updateProduct.image,
+          subcategory_name: updateProduct.subcategory_name,
+          short_description: updateProduct.short_description,
+          price: updateProduct.price,
+          rating: updateProduct.rating,
+          processing_time: updateProduct.processing_time,
+          customization: updateProduct.customization,
+          stockStatus: updateProduct.stockStatus,
+          userEmail: updateProduct.userEmail,
+          userName: updateProduct.userName,
+        },
+      };
+      const result = await productCollection.updateOne(
+        filter,
+        updateDoc,
+        options
+      );
+      res.send(result);
+    });
+
     console.log(
       "Pinged your deployment. You successfully connected to MongoDB!"
     );
