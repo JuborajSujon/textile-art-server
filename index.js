@@ -36,6 +36,13 @@ async function run() {
       res.send(categories);
     });
 
+    // get all products form the database
+    app.get("/products", async (req, res) => {
+      const cursor = productCollection.find();
+      const products = await cursor.toArray();
+      res.send(products);
+    });
+
     // add art and craft products
     app.post("/addProduct", async (req, res) => {
       const newProduct = req.body;
