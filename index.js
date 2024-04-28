@@ -43,6 +43,14 @@ async function run() {
       res.send(products);
     });
 
+    // get single product
+    app.get("/product/:id", async (req, res) => {
+      const id = req.params.id;
+      const query = { _id: new ObjectId(id) };
+      const product = await productCollection.findOne(query);
+      res.send(product);
+    });
+
     // add art and craft products
     app.post("/addProduct", async (req, res) => {
       const newProduct = req.body;
