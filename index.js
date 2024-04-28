@@ -95,6 +95,15 @@ async function run() {
       res.send(result);
     });
 
+    // delete art and craft products
+    app.delete("/productdelete/:id", async (req, res) => {
+      const id = req.params.id;
+      const query = { _id: new ObjectId(id) };
+      console.log(query);
+      const result = await productCollection.deleteOne(query);
+      res.send(result);
+    });
+
     console.log(
       "Pinged your deployment. You successfully connected to MongoDB!"
     );
