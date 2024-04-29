@@ -8,15 +8,7 @@ const app = express();
 const port = process.env.PORT || 5000;
 
 // middleware
-app.use(
-  cors({
-    origin: [
-      "http://localhost:5173",
-      "https://textile-art.netlify.app",
-      "https://textile-art-ta.web.app",
-    ],
-  })
-);
+app.use(cors());
 app.use(express.json());
 
 // mongodb
