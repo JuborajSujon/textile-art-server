@@ -26,10 +26,17 @@ const client = new MongoClient(uri, {
 async function run() {
   try {
     const productCollection = client.db("artcraftDB").collection("products");
+
     const productCategoryCollection = client
       .db("artcraftDB")
       .collection("products categories");
+
     const artistCollection = client.db("artcraftDB").collection("artisans");
+
+    const ourTeamMemberCollection = client
+      .db("artcraftDB")
+      .collection("our team member");
+
     // get all products categories form the database
     app.get("/categories", async (req, res) => {
       const cursor = productCategoryCollection.find();
@@ -74,6 +81,13 @@ async function run() {
       const cursor = artistCollection.find();
       const artisans = await cursor.toArray();
       res.send(artisans);
+    });
+
+    // get all team member
+    app.get("/teamMember", async (req, res) => {
+      const cursor = ourTeamMemberCollection.find();
+      const teamMember = await cursor.toArray();
+      res.send(teamMember);
     });
 
     // add art and craft products
