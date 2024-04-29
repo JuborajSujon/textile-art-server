@@ -37,6 +37,8 @@ async function run() {
       .db("artcraftDB")
       .collection("our team member");
 
+    const faqCollection = client.db("artcraftDB").collection("all faq");
+
     // get all products categories form the database
     app.get("/categories", async (req, res) => {
       const cursor = productCategoryCollection.find();
@@ -88,6 +90,13 @@ async function run() {
       const cursor = ourTeamMemberCollection.find();
       const teamMember = await cursor.toArray();
       res.send(teamMember);
+    });
+
+    // get all faq
+    app.get("/faq", async (req, res) => {
+      const cursor = faqCollection.find();
+      const faq = await cursor.toArray();
+      res.send(faq);
     });
 
     // add art and craft products
