@@ -29,6 +29,7 @@ async function run() {
     const productCategoryCollection = client
       .db("artcraftDB")
       .collection("products categories");
+    const artistCollection = client.db("artcraftDB").collection("artisans");
     // get all products categories form the database
     app.get("/categories", async (req, res) => {
       const cursor = productCategoryCollection.find();
@@ -66,6 +67,13 @@ async function run() {
       const query = { subcategory_name: name };
       const products = await productCollection.find(query).toArray();
       res.send(products);
+    });
+
+    // get all artisans
+    app.get("/artisans", async (req, res) => {
+      const cursor = artistCollection.find();
+      const artisans = await cursor.toArray();
+      res.send(artisans);
     });
 
     // add art and craft products
