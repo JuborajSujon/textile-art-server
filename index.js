@@ -8,7 +8,15 @@ const app = express();
 const port = process.env.PORT || 5000;
 
 // middleware
-app.use(cors());
+app.use(
+  cors({
+    origin: [
+      "http://localhost:5173",
+      "https://textile-art.netlify.app",
+      "https://textile-art-ta.web.app",
+    ],
+  })
+);
 app.use(express.json());
 
 // mongodb
@@ -139,7 +147,6 @@ async function run() {
     app.delete("/productdelete/:id", async (req, res) => {
       const id = req.params.id;
       const query = { _id: new ObjectId(id) };
-      console.log(query);
       const result = await productCollection.deleteOne(query);
       res.send(result);
     });
