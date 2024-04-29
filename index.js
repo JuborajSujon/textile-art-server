@@ -59,6 +59,15 @@ async function run() {
       res.send(products);
     });
 
+    // get product data by subcategory
+    app.get("/subcategory/:name", async (req, res) => {
+      const name = req.params.name;
+      console.log(name);
+      const query = { subcategory_name: name };
+      const products = await productCollection.find(query).toArray();
+      res.send(products);
+    });
+
     // add art and craft products
     app.post("/addProduct", async (req, res) => {
       const newProduct = req.body;
