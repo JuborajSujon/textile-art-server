@@ -1,11 +1,11 @@
-# Textile Art
+# Textile Art - server
 
 ### Live Site URL:
-
 Firebase Hosting : [https://textile-art-ta.web.app/](https://textile-art-ta.web.app/)
 
 Netlify Hosting : [https://textile-art.netlify.app/](https://textile-art.netlify.app/)
 
+Textile Art client side repository : [https://github.com/JuborajSujon/textile-art-client](https://github.com/JuborajSujon/textile-art-client)
 ## Features and Characteristics:
 
 - Create, Read, Update, and Delete (CRUD) operations
@@ -25,7 +25,7 @@ Netlify Hosting : [https://textile-art.netlify.app/](https://textile-art.netlify
 1. Clone the repository from GitHub:
 
 ```
-git clone https://github.com/programming-hero-web-course-4/b9a10-server-side-JuborajSujon
+git clone https://github.com/JuborajSujon/textile-art-server.git
 
 ```
 
@@ -64,51 +64,6 @@ npm run dev
 
 The server should now be running on http://localhost:5000
 
-## API Endpoints
-
-- GET /api/products
-
-Get all products from the database
-
-- GET /api/products/:id
-
-Get a specific product from the database
-
-- GET /api/categories
-
-Get all categories from the database
-
-- GET /api/userproducts/:email
-
-Get all products associated with a specific user from the database
-
-- GET /api/subcategory/:name
-
-Get a specific subcategories from the database
-
-- GET /api/artisans
-
-Get all artisans from the database
-
-- GET /api/teamMember
-
-Get all team members from the database
-
-- GET /api/faq
-
-Get all FAQs from the database
-
-- POST /api/addProduct
-
-Add a new product to the database
-
-- PUT /api/updateProduct/:id
-
-Update a specific product in the database
-
-- DELETE /api/productdelete/:id
-
-Delete a specific product from the database
 
 ## Conclusion: :rocket:
 
